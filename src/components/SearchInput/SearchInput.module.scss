@@ -1,0 +1,43 @@
+.inputBlock {
+   width: 500px;
+   border-radius: 15px;
+   overflow: hidden;
+   border: 1px solid rgba(0, 0, 0, 0.5);
+   position: relative;
+   transition: 0.3s;
+
+   .input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 10px;
+      padding-left: 45px;
+      font-weight: 600;
+      font-size: 18px;
+   }
+
+   .iconS {
+      position: absolute;
+      top: 9px;
+      left: 8px;
+      transition: 0.3s;
+      opacity: 0.5;
+      width: 25px;
+      height: 25px;
+   }
+
+   .iconD {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: .3s;
+
+      &:hover {
+         opacity: 1;
+      }
+   }
+}
