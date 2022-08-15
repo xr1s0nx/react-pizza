@@ -6,6 +6,11 @@
    position: relative;
    transition: 0.3s;
 
+   @media (max-width: 1140px) {
+      order: 3;
+      margin-top: 25px;
+   }
+
    .input {
       width: 100%;
       border: none;
