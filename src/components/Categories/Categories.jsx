@@ -1,37 +1,21 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeActive, changeSearchVal } from "../../redux/slices/filterSlice";
 
-const Categories = (props) => {
-   const [liMas, MasChange] = React.useState({
-      AllNavBtns: [
-         { id: 1, text: "Все", active: true },
-         { id: 2, text: "Мясные", active: false },
-         { id: 3, text: "Вегетарианские", active: false },
-         { id: 4, text: "Гриль", active: false },
-         { id: 5, text: "Острые", active: false },
-         { id: 6, text: "Закрытые", active: false },
-      ],
-   });
+const Categories = () => {
 
-   const liClick = (id) => {
-      MasChange({
-         ...liMas,
-         AllNavBtns: liMas.AllNavBtns.map((item) => {
-            item.id === id ? (item.active = true) : (item.active = false);
-            return item;
-         }),
-      });
-      let nowSelect = liMas.AllNavBtns.filter((item) => item.id === id)[0].text;
-      props.changeCategorie(id-1, nowSelect)
-   };
+   const navBtns = useSelector((state) => state.filter.navBtns);
+   const dispatch = useDispatch();
 
    return (
       <div className="categories">
          <ul>
-            {liMas.AllNavBtns.map((li) => (
+            {navBtns.map((li) => (
                <li
                   key={li.id}
                   onClick={() => {
-                     liClick(li.id);
+                     dispatch(changeActive(li.id))
+                     dispatch(changeSearchVal(''))
                   }}
                   className={li.active ? "active" : null}
                >
