@@ -6,6 +6,7 @@ import Categories from "../Categories/Categories";
 import PizzaSkeleton from "../PizzaBlock/PizzaSkeleton";
 import PizzaBlock from "../PizzaBlock/PizzaBlock";
 import { changeActive } from "../../redux/slices/filterSlice";
+import * as axios from "axios";
 
 const Menu = () => {
    const nowFilter = useSelector((state) => state.filter.nowActiveFilter);
@@ -25,16 +26,14 @@ const Menu = () => {
          dispatch(changeActive(0));
       }
       dispatch(toggleLoad(true));
-      fetch(
-         `https://62f7bd69ab9f1f8e89029709.mockapi.io/pizzas?sortBy=${sortTypes[nowActiveSort]}&order=${ascStatus ? "asc" : "desc"}${
-            nowFilter === 0 ? "" : `&category=${nowFilter}`
-         }${searchVal ? `&search=${searchVal}` : ""}`
-      )
+      axios
+         .get(
+            `https://62f7bd69ab9f1f8e89029709.mockapi.io/pizzas?sortBy=${sortTypes[nowActiveSort]}&order=${ascStatus ? "asc" : "desc"}${
+               nowFilter === 0 ? "" : `&category=${nowFilter}`
+            }${searchVal ? `&search=${searchVal}` : ""}`
+         )
          .then((response) => {
-            return response.json();
-         })
-         .then((response) => {
-            dispatch(setPizzas(response));
+            dispatch(setPizzas(response.data));
             dispatch(toggleLoad(false));
          });
    }, [nowFilter, dispatch, nowActiveSort, ascStatus, searchVal]);
