@@ -9,13 +9,12 @@ const SearchInput = (callback, deps) => {
   const searchRef = useRef();
   const dispatch = useDispatch();
 
-  const onSearchInput = useCallback(
-    () =>
-      debounce((str) => {
-        dispatch(changeSearchVal(str));
-      }, 1000),
-    [dispatch]
-  );
+  const setSearchVal = (str) => {
+    debugger;
+    dispatch(changeSearchVal(str));
+  };
+
+  const onSearchInput = debounce((str) => setSearchVal(str), 1000);
 
   const onInputChange = (e) => {
     setValue(e.target.value);
