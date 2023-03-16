@@ -10,7 +10,7 @@ const SearchInput = (callback, deps) => {
   const dispatch = useDispatch();
 
   const setSearchVal = (str) => {
-    debugger;
+    console.log(str);
     dispatch(changeSearchVal(str));
   };
 
